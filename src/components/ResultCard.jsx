@@ -1,14 +1,12 @@
 const ResultCard = ({ result, onBack }) => {
-  if (!result) return null;
-
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-6">
-        <h2 className="text-xl font-bold mb-4 text-green-600">
-          Complaint Submitted Successfully
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+      <div className="w-full max-w-md bg-white rounded-xl shadow-xl p-6">
+        <h2 className="text-xl font-bold text-green-600 mb-4">
+          Complaint Submitted ✅
         </h2>
 
-        <div className="space-y-2 text-sm">
+        <div className="space-y-2 text-sm text-gray-700">
           <p><b>Issue ID:</b> {result.id}</p>
           <p><b>Detected Issue:</b> {result.issue}</p>
           <p><b>Priority Score:</b> {result.priority}/10</p>
