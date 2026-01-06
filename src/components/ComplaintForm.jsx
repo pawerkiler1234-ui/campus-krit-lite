@@ -1,37 +1,63 @@
-import React from "react";
+import { useState } from "react";
 
-const ComplaintForm = () => {
+const ComplaintForm = ({ onSubmit }) => {
+  const [urgency, setUrgency] = useState("Low");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // 🔥 SIMULATED AI + LOGIC
+    const issue = "Electrical issue – broken light";
+    const priorityMap = { Low: 3, Medium: 6, High: 9 };
+
+    const result = {
+      id: "CK-" + Math.floor(Math.random() * 10000),
+      issue,
+      priority: priorityMap[urgency],
+      department: "Electrical Maintenance",
+    };
+
+    onSubmit(result);
+  };
+
   return (
-    <div style={{ maxWidth: "500px", margin: "40px auto" }}>
-      <h2>Report Campus Issue</h2>
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-6">
+        <h1 className="text-2xl font-bold mb-1">Campus-Krit</h1>
+        <p className="text-sm text-gray-500 mb-6">
+          Report campus infrastructure issues instantly
+        </p>
 
-      <form>
-        <div>
-          <label>Issue Photo</label><br />
-          <input type="file" />
-        </div>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input type="file" className="w-full border rounded-lg p-2" />
 
-        <div>
-          <label>Location</label><br />
-          <input type="text" placeholder="Block / Room" />
-        </div>
+          <input
+            type="text"
+            placeholder="Block / Room"
+            className="w-full border rounded-lg p-2"
+          />
 
-        <div>
-          <label>Urgency</label><br />
-          <select>
+          <select
+            value={urgency}
+            onChange={(e) => setUrgency(e.target.value)}
+            className="w-full border rounded-lg p-2"
+          >
             <option>Low</option>
             <option>Medium</option>
             <option>High</option>
           </select>
-        </div>
 
-        <div>
-          <label>Description</label><br />
-          <textarea rows="3" />
-        </div>
+          <textarea
+            placeholder="Describe the issue"
+            className="w-full border rounded-lg p-2"
+            rows="3"
+          />
 
-        <button type="submit">Submit Complaint</button>
-      </form>
+          <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+            Submit Complaint
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
